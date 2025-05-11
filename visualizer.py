@@ -58,3 +58,18 @@ def plot_gantt(log):
     fig = px.timeline(df, x_start="Başlangıç", x_end="Bitiş", y="Görev", color="Açıklama")
     fig.update_yaxes(autorange="reversed")
     return fig
+
+
+def plot_scenario_comparison(scenarios):
+    import plotly.graph_objects as go
+    names = [s["name"] for s in scenarios]
+    dists = [s["dist"] for s in scenarios]
+    times = [s["time"] for s in scenarios]
+    risks = [s["risk"] for s in scenarios]
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(name="Mesafe (km)", x=names, y=dists))
+    fig.add_trace(go.Bar(name="Süre (dk)", x=names, y=times))
+    fig.add_trace(go.Bar(name="Risk", x=names, y=risks))
+    fig.update_layout(barmode='group', title="📊 Senaryo Karşılaştırması")
+    return fig
