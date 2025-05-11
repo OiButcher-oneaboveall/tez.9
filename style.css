@@ -1,0 +1,28 @@
+
+<style>
+    .stApp {
+        background-color: #121212;
+        color: white;
+    }
+    .reportview-container .markdown-text-container {
+        color: white;
+    }
+    .css-1d391kg { background-color: #1e1e1e; }
+    .stButton>button {
+        background-color: #0d6efd;
+        color: white;
+        border-radius: 8px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        font-weight: bold;
+        color: #f2f2f2;
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        padding: 10px;
+        border-radius: 5px 5px 0 0;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #0d6efd;
+        color: white;
+    }
+</style>
