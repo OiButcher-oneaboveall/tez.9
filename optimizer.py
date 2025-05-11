@@ -51,15 +51,13 @@ time_windows = {
 START_HOUR = 6
 
 def get_speed(city_idx, hour_idx):
-    idx = hour_idx - START_HOUR
-    if (
-        isinstance(speed_hourly_matrix, np.ndarray)
-        and 0 <= city_idx < speed_hourly_matrix.shape[0]
-        and 0 <= idx < speed_hourly_matrix.shape[1]
-    ):
-        return speed_hourly_matrix[city_idx, idx]
-    else:
-        return 90  # güvenli sabit hız
+    try:
+        idx = hour_idx - START_HOUR
+        return speed_hourly_matrix[city_idx][idx]
+    except Exception as e:
+        print(f"[WARN] get_speed index error: city={city_idx}, hour={hour_idx}, idx={idx}")
+        return 90
+
 
 
 def compute_piecewise_travel_time(from_city, to_city, hour, minute, distance):
@@ -187,3 +185,4 @@ def run_ga(pop_size=300, generations=500, max_risk=1.5):
         return best, d, t, r, log
     else:
         return None, None, None, None, []
+
