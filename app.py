@@ -2,14 +2,14 @@
 import streamlit as st
 import os, json
 from optimizer import run_ga
-from visualizer import plot_gantt, plot_folium_route, plot_scenario_comparison
+from visualizer import plot_gantt, plot_folium_route, plot_scenario_comparison, plot_emission_energy_comparison
 from streamlit_folium import st_folium
 
 SCENARIO_DIR = "scenarios"
 os.makedirs(SCENARIO_DIR, exist_ok=True)
 
 st.set_page_config(layout="wide")
-st.title("🚛 GA ile Rota Optimizasyonu + Senaryo Yönetimi")
+st.title("🚛 GA Tabanlı Rota + Sürdürülebilirlik Optimizasyonu")
 
 tab1, tab2 = st.tabs(["🚀 Yeni Optimizasyon", "📊 Senaryo Karşılaştırma"])
 
@@ -53,4 +53,7 @@ with tab2:
                 data = json.load(f)
                 data["name"] = fname.replace(".json", "")
                 loaded.append(data)
+        st.subheader("📊 Risk / Süre / Mesafe Karşılaştırması")
         st.plotly_chart(plot_scenario_comparison(loaded), use_container_width=True)
+        st.subheader("🌱 Emisyon ve Enerji Analizi")
+        st.plotly_chart(plot_emission_energy_comparison(loaded), use_container_width=True)

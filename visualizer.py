@@ -73,3 +73,25 @@ def plot_scenario_comparison(scenarios):
     fig.add_trace(go.Bar(name="Risk", x=names, y=risks))
     fig.update_layout(barmode='group', title="📊 Senaryo Karşılaştırması")
     return fig
+
+
+def compute_emission_kwh(dist_km, avg_speed_kmh=60):
+    co2_per_km = 0.2  # kg/km
+    kwh_per_km = 0.25  # elektrikli tüketim (örnek)
+    return dist_km * co2_per_km, dist_km * kwh_per_km
+
+def plot_emission_energy_comparison(scenarios):
+    import plotly.graph_objects as go
+    names = [s["name"] for s in scenarios]
+    emissions = []
+    energies = []
+    for s in scenarios:
+        co2, kwh = compute_emission_kwh(s["dist"])
+        emissions.append(co2)
+        energies.append(kwh)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(name="CO₂ Emisyonu (kg)", x=names, y=emissions))
+    fig.add_trace(go.Bar(name="Enerji Tüketimi (kWh)", x=names, y=energies))
+    fig.update_layout(barmode='group', title="🌱 Emisyon ve Enerji Tüketimi Karşılaştırması")
+    return fig
