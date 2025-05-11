@@ -10,7 +10,7 @@ import os
 
 # Başlık ve Tema
 st.set_page_config(page_title="İstanbul Rota Optimizasyonu", layout="wide")
-st.title("🛣️ İstanbul Tehlikeli Madde Taşımacılığı Rota Optimizasyonu")
+st.title("🛣️ Zaman Pencereli ve Risk Kısıtlı Araç İkmali Rota Optimizasyonu")
 
 # Sekmeler
 tabs = st.tabs(["🚀 Senaryo Oluştur", "⚙️ Parametreler", "📈 Sonuçlar", "🗺️ Harita", "⛽ Bekleme Animasyonu", "🌱 Emisyon ve Enerji", "🕒 Gantt Şeması", "📊 Parametre Analizi", "📂 Senaryo Karşılaştırma"])
