@@ -52,9 +52,15 @@ START_HOUR = 6
 
 def get_speed(city_idx, hour_idx):
     idx = hour_idx - START_HOUR
-    if 0 <= idx < 12:
+    if (
+        isinstance(speed_hourly_matrix, np.ndarray)
+        and 0 <= city_idx < speed_hourly_matrix.shape[0]
+        and 0 <= idx < speed_hourly_matrix.shape[1]
+    ):
         return speed_hourly_matrix[city_idx, idx]
-    return 90
+    else:
+        return 90  # güvenli sabit hız
+
 
 def compute_piecewise_travel_time(from_city, to_city, hour, minute, distance):
     remaining = distance
