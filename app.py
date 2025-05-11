@@ -183,3 +183,4 @@ with tabs[8]:
         st.bar_chart(df.set_index("Ad"))
     else:
         st.info("Karşılaştırmak için lütfen en az 2 senaryo yükleyin.")
+
