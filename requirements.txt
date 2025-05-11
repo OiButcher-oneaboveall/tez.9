@@ -1,8 +1,5 @@
 streamlit
-folium
-streamlit-folium
 plotly
-pandas
-matplotlib
-Pillow
-requests
+folium
+numpy
+openrouteservice
