@@ -1,3 +1,4 @@
+cities = ["Rafineri", "Gürpınar", "Yenikapı", "Selimiye", "İçerenköy", "Tophane", "Alibeyköy", "İstinye"]
 
 import streamlit as st
 import os, json
@@ -25,11 +26,12 @@ with tab1:
             if route:
                 st.success("✅ En iyi rota bulundu!")
                 st.write("**Mesafe:**", round(dist,2), "km  |  **Süre:**", round(time,1), "dk  |  **Risk:**", round(risk,3))
-                st.write("**Rota:**", route)
+                city_names = [cities[i] for i in route]
+                st.write("**Rota:**", " → ".join(city_names))
                 st.subheader("🕒 Gantt Şeması")
                 st.plotly_chart(plot_gantt(log), use_container_width=True)
                 st.subheader("🗺️ Harita")
-                route_names = ["Rafineri"] + [st.session_state.get("cities", [])[i] for i in route[1:-1]] + ["Rafineri"]
+                route_names = [cities[i] for i in route]
                 map_obj = plot_folium_route(route_names)
                 if map_obj:
                     st_folium(map_obj, use_container_width=True)
